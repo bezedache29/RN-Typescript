@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   SafeAreaView,
   ScrollView,
@@ -20,8 +20,15 @@ import {
 
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
 import Card from './components/Card'
+import { useLogging } from './hooks/useLogging'
 
 const App = () => {
+  const [logging] = useLogging('Application')
+
+  useEffect(() => {
+    logging.error('Loading application...')
+  }, [logging])
+
   const isDarkMode = useColorScheme() === 'dark'
 
   const backgroundStyle = {
