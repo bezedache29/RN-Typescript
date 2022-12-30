@@ -11,14 +11,13 @@
 import React, { useEffect } from 'react'
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
+  StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native'
 
-import { Colors, Header } from 'react-native/Libraries/NewAppScreen'
 import Card from './components/Card'
 import { useLogging } from './hooks/useLogging'
 
@@ -26,38 +25,35 @@ const App = () => {
   const [logging] = useLogging('Application')
 
   useEffect(() => {
-    logging.error('Loading application...')
+    logging.info('Loading application...')
   }, [logging])
 
   const isDarkMode = useColorScheme() === 'dark'
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  }
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}
-      >
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}
-        >
-          <Text>Mon titre</Text>
+    <SafeAreaView>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <View>
+        <Text>Restaurants App</Text>
 
-          <Card title="Mon super titre" content="mon super content" />
+        <View style={styles.content}>
+          <Text>Explore</Text>
+          <Text>Restaurants</Text>
+          <Text>Profile</Text>
         </View>
-      </ScrollView>
+
+        <Card title="Mon super titre" content="mon super content" />
+      </View>
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 150,
+  },
+})
 
 export default App
