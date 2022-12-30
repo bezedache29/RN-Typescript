@@ -20,6 +20,9 @@ import {
 
 import Card from './components/Card'
 import { useLogging } from './hooks/useLogging'
+import ExploreScreen from './screens/ExploreScreen'
+import ProfileScreen from './screens/ProfileScreen'
+import RestaurantsScreen from './screens/RestaurantsScreen'
 
 const App = () => {
   const [logging] = useLogging('Application')
@@ -30,22 +33,24 @@ const App = () => {
 
   const isDarkMode = useColorScheme() === 'dark'
 
-  return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <View>
-        <Text>Restaurants App</Text>
+  return <RestaurantsScreen />
 
-        <View style={styles.content}>
-          <Text>Explore</Text>
-          <Text>Restaurants</Text>
-          <Text>Profile</Text>
-        </View>
+  // return (
+  //   <SafeAreaView>
+  //     <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+  //     <View>
+  //       <Text>Restaurants App</Text>
 
-        <Card title="Mon super titre" content="mon super content" />
-      </View>
-    </SafeAreaView>
-  )
+  //       <View style={styles.content}>
+  //         <Text>Explore</Text>
+  //         <Text>Restaurants</Text>
+  //         <Text>Profile</Text>
+  //       </View>
+
+  //       <Card title="Mon super titre" content="mon super content" />
+  //     </View>
+  //   </SafeAreaView>
+  // )
 }
 
 const styles = StyleSheet.create({
