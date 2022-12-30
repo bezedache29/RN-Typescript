@@ -2,20 +2,49 @@ import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import RestaurantCard from '../components/RestaurantCard'
 import Menu from '../components/Menu'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParams } from '../App'
 
-const ExploreScreen = () => {
+type Props = NativeStackScreenProps<RootStackParams, 'Explore'>
+
+const ExploreScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.screenTitle}>Restaurants</Text>
       <View>
         <Text style={styles.sectionTitle}>Restaurants Near You</Text>
-        <RestaurantCard name="Sushi restaurant" />
-        <RestaurantCard name="Burger restaurant" />
-        <RestaurantCard name="Fine dining restaurant" />
+        <RestaurantCard
+          name="Sushi restaurant"
+          onPress={(name) => {
+            navigation.navigate('Restaurant', { name })
+          }}
+        />
+        <RestaurantCard
+          name="Burger restaurant"
+          onPress={(name) => {
+            navigation.navigate('Restaurant', { name })
+          }}
+        />
+        <RestaurantCard
+          name="Fine dining restaurant"
+          onPress={(name) => {
+            navigation.navigate('Restaurant', { name })
+          }}
+        />
 
         <Text style={styles.sectionTitle}>Most Popular Restaurants</Text>
-        <RestaurantCard name="Sushi restaurant" />
-        <RestaurantCard name="Burger restaurant" />
+        <RestaurantCard
+          name="Sushi restaurant"
+          onPress={(name) => {
+            navigation.navigate('Restaurant', { name })
+          }}
+        />
+        <RestaurantCard
+          name="Burger restaurant"
+          onPress={(name) => {
+            navigation.navigate('Restaurant', { name })
+          }}
+        />
       </View>
       <Menu />
     </View>

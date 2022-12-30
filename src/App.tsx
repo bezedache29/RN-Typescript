@@ -16,11 +16,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ExploreScreen from './screens/ExploreScreen'
 import RestaurantsScreen from './screens/RestaurantsScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import RestaurantScreen from './screens/RestaurantScreen'
 
 export type RootStackParams = {
   Explore
   Restaurants
   Profile
+  Restaurant: {
+    name: string
+  }
 }
 
 const RootStack = createNativeStackNavigator<RootStackParams>()
@@ -38,6 +42,7 @@ const App = () => {
         <RootStack.Screen name="Explore" component={ExploreScreen} />
         <RootStack.Screen name="Restaurants" component={RestaurantsScreen} />
         <RootStack.Screen name="Profile" component={ProfileScreen} />
+        <RootStack.Screen name="Restaurant" component={RestaurantScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   )
