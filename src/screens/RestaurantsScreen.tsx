@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native'
 import React from 'react'
 import RestaurantCard from '../components/RestaurantCard'
+import Menu from '../components/Menu'
 
 const RestaurantsScreen = () => {
   return (
@@ -14,6 +15,7 @@ const RestaurantsScreen = () => {
         <RestaurantCard name="Burger restaurant" />
         <RestaurantCard name="Fine dining restaurant" />
       </ScrollView>
+      <Menu />
     </View>
   )
 }

@@ -8,21 +8,22 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native'
 import React, { useEffect } from 'react'
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native'
 
-import Card from './components/Card'
 import { useLogging } from './hooks/useLogging'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ExploreScreen from './screens/ExploreScreen'
-import ProfileScreen from './screens/ProfileScreen'
 import RestaurantsScreen from './screens/RestaurantsScreen'
+import ProfileScreen from './screens/ProfileScreen'
+
+export type RootStackParams = {
+  Explore
+  Restaurants
+  Profile
+}
+
+const RootStack = createNativeStackNavigator<RootStackParams>()
 
 const App = () => {
   const [logging] = useLogging('Application')
@@ -31,34 +32,15 @@ const App = () => {
     logging.info('Loading application...')
   }, [logging])
 
-  const isDarkMode = useColorScheme() === 'dark'
-
-  return <RestaurantsScreen />
-
-  // return (
-  //   <SafeAreaView>
-  //     <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-  //     <View>
-  //       <Text>Restaurants App</Text>
-
-  //       <View style={styles.content}>
-  //         <Text>Explore</Text>
-  //         <Text>Restaurants</Text>
-  //         <Text>Profile</Text>
-  //       </View>
-
-  //       <Card title="Mon super titre" content="mon super content" />
-  //     </View>
-  //   </SafeAreaView>
-  // )
+  return (
+    <NavigationContainer>
+      <RootStack.Navigator initialRouteName="Explore">
+        <RootStack.Screen name="Explore" component={ExploreScreen} />
+        <RootStack.Screen name="Restaurants" component={RestaurantsScreen} />
+        <RootStack.Screen name="Profile" component={ProfileScreen} />
+      </RootStack.Navigator>
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-  content: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 150,
-  },
-})
 
 export default App
